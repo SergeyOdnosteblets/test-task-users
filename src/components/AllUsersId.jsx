@@ -13,6 +13,8 @@ export const AllUsersId = () => {
   }, []);
 
   return (
-    <div className="App">{usersId && usersId.map((item) => <List id={item} key={item.id} />)}</div>
+    <div className="App" data-testid="allUserId">
+      {usersId && usersId.map((item) => <List id={item} key={item.id} />)}
+    </div>
   );
 };
