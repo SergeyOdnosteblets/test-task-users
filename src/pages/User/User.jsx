@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { axiosFunc } from '../../utils/axios';
-import styles from './UserPage.module.scss';
+import styles from './User.module.scss';
 
-export const UserPage = () => {
+export const User = () => {
   const [state, setState] = useState([]);
 
   const { id } = useParams();
@@ -17,7 +17,7 @@ export const UserPage = () => {
   }, []);
 
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid="userPage">
       <div className={styles.user}>
         <div>{state.firstName}</div>
         <div>{state.lastName}</div>
