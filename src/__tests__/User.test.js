@@ -1,17 +1,18 @@
 import '@testing-library/jest-dom';
 
 import axios from 'axios';
-import { BASE_URL, allFetchUsers } from '../utils/axios';
+import { BASE_URL, fetchUser } from '../utils/axios';
 
 jest.mock('axios');
 
-describe('allFetchUsers', () => {
+describe('fetchUser', () => {
   it('should return empty user list', async () => {
     axios.get.mockResolvedValueOnce([]);
 
-    const result = await allFetchUsers();
+    const user = [];
+    const result = await fetchUser(user);
 
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:id`);
+    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:${user.id}`);
     expect(result).toEqual([]);
   });
 
@@ -28,14 +29,9 @@ describe('allFetchUsers', () => {
     ];
 
     axios.get.mockResolvedValueOnce(user);
+    const result = await fetchUser(user);
 
-    const result = await allFetchUsers();
-
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:id`);
+    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:${user.id}`);
     expect(result).toEqual(user);
   });
 });
-
-
-
-

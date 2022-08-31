@@ -12,7 +12,7 @@ export const axiosFunc = (url) =>
     },
   });
 
-export const fetchUsers = async () => {
+export const allFetchUsers = async () => {
   try {
     return await axios.get(`${BASE_URL}/list`);
   } catch (e) {
@@ -20,9 +20,10 @@ export const fetchUsers = async () => {
   }
 };
 
-export const allFetchUsers = async () => {
+
+export const fetchUser = async (user) => {
   try {
-    return await axios.get(`${BASE_URL}/get:id`);
+    return await axios.get(`${BASE_URL}/get:${user.id}`);
   } catch (e) {
     return [];
   }
