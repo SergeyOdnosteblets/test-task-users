@@ -7,9 +7,7 @@ jest.mock('axios');
 
 describe('allFetchUsers', () => {
   it('should return users list', async () => {
-    
     const users = [{ id: 1 }, { id: 2 }];
-
     axios.get.mockResolvedValueOnce(users);
 
     const result = await fetchUsers();
@@ -20,7 +18,6 @@ describe('allFetchUsers', () => {
 
   it('should return empty users list', async () => {
     const users = [];
-
     axios.get.mockResolvedValueOnce(users);
 
     const result = await fetchUsers();
@@ -32,7 +29,6 @@ describe('allFetchUsers', () => {
 
 describe('when API call fails', () => {
   it('should return empty users list', async () => {
-    
     const message = 'Network Error';
     axios.get.mockRejectedValueOnce(new Error(message));
 
