@@ -20,7 +20,6 @@ export const allFetchUsers = async () => {
   }
 };
 
-
 export const fetchUser = async (user) => {
   try {
     return await axios.get(`${BASE_URL}/get:${user.id}`);
@@ -28,3 +27,4 @@ export const fetchUser = async (user) => {
     return [];
   }
 };
+
