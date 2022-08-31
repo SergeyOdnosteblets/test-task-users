@@ -1,19 +1,13 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
 import { AllUsersId } from '../components/AllUsersId';
 
 it('rendering a component AllUsersId', () => {
-  const route = '/';
+  render(<AllUsersId />);
 
-  render(
-    <MemoryRouter initialEntries={[route]}>
-      <AllUsersId />
-    </MemoryRouter>,
-  );
-
-  const appElement = screen.getByTestId('allUserId');
-  expect(appElement).toBeVisible()
+  const appElement = screen.getByTestId('all-user-id');
+  expect(appElement).toBeVisible();
 });
