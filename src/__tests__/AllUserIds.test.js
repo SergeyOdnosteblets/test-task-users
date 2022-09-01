@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, waitFor } from '@testing-library/react';
 
-import { AllUsersId } from '../components/AllUsersId';
+import { AllUserIds } from '../components/AllUserIds';
 import { BrowserRouter } from 'react-router-dom';
 
 const users = [{ id: 1 }];
@@ -18,7 +18,7 @@ jest.mock('axios', () => ({
 it('render AllUsersId with received data', async () => {
   const { getByText } = render(
     <BrowserRouter>
-      <AllUsersId />
+      <AllUserIds />
     </BrowserRouter>,
   );
   

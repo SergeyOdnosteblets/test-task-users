@@ -1,16 +1,16 @@
 import '@testing-library/jest-dom';
 
 import axios from 'axios';
-import { BASE_URL, allFetchUsers } from '../utils/axios';
+import { BASE_URL, getUsers } from '../utils/axios';
 
 jest.mock('axios');
 
-describe('allFetchUsers', () => {
+describe('getUsers', () => {
   it('should return users list', async () => {
     const users = [{ id: 1 }, { id: 2 }];
     axios.get.mockResolvedValueOnce(users);
 
-    const result = await allFetchUsers(users);
+    const result = await getUsers(users);
 
     expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/list`);
     expect(result).toEqual(users);
@@ -20,7 +20,7 @@ describe('allFetchUsers', () => {
     const users = [];
     axios.get.mockResolvedValueOnce(users);
 
-    const result = await allFetchUsers();
+    const result = await getUsers();
 
     expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/list`);
     expect(result).toEqual(users);
@@ -32,7 +32,7 @@ describe('when API call fails', () => {
     const message = 'Network Error';
     axios.get.mockRejectedValueOnce(new Error(message));
 
-    const result = await allFetchUsers();
+    const result = await getUsers();
 
     expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/list`);
     expect(result).toEqual([]);
