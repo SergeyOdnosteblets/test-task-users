@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const users = [{ id: 1 }];
 const getMock = (url) =>
-  url.includes('list')
+  url.includes('get/id')
     ? Promise.resolve({ data: { data: users } })
     : Promise.resolve({
         data: { data: { firstName: 'firstName', age: 'age', lastName: 'lastName' } },
@@ -23,7 +23,7 @@ describe('fetchUser', () => {
         <User />
       </BrowserRouter>,
     );
-    
+
     await waitFor(
       () => {
         expect(getByText('firstName')).toBeVisible();
