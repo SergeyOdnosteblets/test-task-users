@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-export const BASE_URL = 'http://opn-interview-service.nn.r.appspot.com';
-const token =
-  'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMjMiLCJpZGVudGl0eSI6IjEyMzQifQ.yOIx1ZozHSMy_ZndEEMXIH0YeGUkHH3idl_2WTI12gs';
+export const BASE_URL = process.env.REACT_APP_URL;
+const token = `Bearer ${process.env.REACT_APP_TOKEN}`;
 
 export const axiosFunc = (url) =>
   axios.get(`${BASE_URL}${url}`, {
@@ -19,7 +18,5 @@ export const getUsers = async () => {
     return [];
   }
 };
-
-
 
 
