@@ -1,23 +1,28 @@
 import React from 'react';
 
-import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 
 import { AllUsersId } from '../components/AllUsersId';
+import { BrowserRouter } from 'react-router-dom';
 
-describe('Users list', () => {
-  it('rendering a component AllUsersId', () => {
-    render(<AllUsersId />);
+const users = [{ id: 1 }];
+const getMock = (url) =>
+  url.includes('list')
+    ? Promise.resolve({ data: { data: users } })
+    : Promise.resolve({ data: { data: { firstName: 'firstName' } } });
+jest.mock('axios', () => ({
+  ...jest.requireActual('axios'),
+  get: getMock,
+}));
 
-    const appElement = screen.getByTestId('all-user-id');
-    expect(appElement).toBeVisible();
-  });
-
-  it('rendering async component AllUsersId', async () => {
-    render(<AllUsersId />);
-
-    const userList = await waitFor(() => screen.findByTestId('all-user-id'));
-    expect(userList).toBeInTheDocument();
+it('render AllUsersId with received data', async () => {
+  const { getByText } = render(
+    <BrowserRouter>
+      <AllUsersId />
+    </BrowserRouter>,
+  );
+  
+  await waitFor(() => expect(getByText('firstName')).toBeVisible(), {
+    timeout: 500,
   });
 });
-

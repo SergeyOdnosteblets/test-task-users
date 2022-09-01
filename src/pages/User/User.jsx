@@ -17,7 +17,7 @@ export const User = () => {
   }, []);
 
   return (
-    <div className={styles.main} data-testid="userPage">
+    <div className={styles.main} data-testid="user-page">
       <div className={styles.user}>
         <div>{state.firstName}</div>
         <div>{state.lastName}</div>

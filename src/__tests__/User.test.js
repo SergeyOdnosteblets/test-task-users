@@ -1,37 +1,38 @@
 import '@testing-library/jest-dom';
+import { render, waitFor } from '@testing-library/react';
 
-import axios from 'axios';
-import { BASE_URL, fetchUser } from '../utils/axios';
+import { User } from '../pages/User/User';
+import { BrowserRouter } from 'react-router-dom';
 
-jest.mock('axios');
+const users = [{ id: 1 }];
+const getMock = (url) =>
+  url.includes('list')
+    ? Promise.resolve({ data: { data: users } })
+    : Promise.resolve({
+        data: { data: { firstName: 'firstName', age: 'age', lastName: 'lastName' } },
+      });
+jest.mock('axios', () => ({
+  ...jest.requireActual('axios'),
+  get: getMock,
+}));
 
 describe('fetchUser', () => {
-  it('should return empty user list', async () => {
-    axios.get.mockResolvedValueOnce([]);
-
-    const user = [];
-    const result = await fetchUser(user);
-
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:${user.id}`);
-    expect(result).toEqual([]);
-  });
-
-  it('should return user', async () => {
-    const user = [
-      {
-        id: 1,
-        firstName: 'firstName',
-        lastName: 'lastName',
-        age: 'number',
-        gender: 'gender',
-        country: 'country',
+  it('render User with received data', async () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <User />
+      </BrowserRouter>,
+    );
+    
+    await waitFor(
+      () => {
+        expect(getByText('firstName')).toBeVisible();
+        expect(getByText('lastName')).toBeVisible();
+        expect(getByText('age')).toBeVisible();
       },
-    ];
-
-    axios.get.mockResolvedValueOnce(user);
-    const result = await fetchUser(user);
-
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/get:${user.id}`);
-    expect(result).toEqual(user);
+      {
+        timeout: 500,
+      },
+    );
   });
 });
