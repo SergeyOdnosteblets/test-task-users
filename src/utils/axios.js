@@ -11,7 +11,7 @@ export const axiosFunc = (url) =>
     },
   });
 
-export const allFetchUsers = async () => {
+export const getUsers = async () => {
   try {
     return await axios.get(`${BASE_URL}/list`);
   } catch (e) {
@@ -19,10 +19,3 @@ export const allFetchUsers = async () => {
   }
 };
 
-export const fetchUser = async (user) => {
-  try {
-    return await axios.get(`${BASE_URL}/get:${user.id}`);
-  } catch (e) {
-    return [];
-  }
-};

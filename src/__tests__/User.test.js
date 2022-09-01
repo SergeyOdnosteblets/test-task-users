@@ -16,7 +16,7 @@ jest.mock('axios', () => ({
   get: getMock,
 }));
 
-describe('fetchUser', () => {
+describe('User', () => {
   it('render User with received data', async () => {
     const { getByText } = render(
       <BrowserRouter>
