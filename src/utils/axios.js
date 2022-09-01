@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const BASE_URL = process.env.REACT_APP_URL;
-const token = process.env.REACT_APP_TOKEN;
+const token = `Bearer ${process.env.REACT_APP_TOKEN}`;
 
 export const axiosFunc = (url) =>
   axios.get(`${BASE_URL}${url}`, {
