@@ -5,5 +5,4 @@ it('render app component', () => {
   render(<App />);
   const appElement = screen.getByTestId('app');
   expect(appElement).toBeInTheDocument();
-  expect(screen.queryByRole('App')).toBeNull();
 });

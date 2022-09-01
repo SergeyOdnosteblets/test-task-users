@@ -17,7 +17,7 @@ export const List = ({ id }) => {
 
   return (
     <div className={styles.main}>
-      <Link to={`/${id}`} className={styles.user}>
+      <Link to={`/${id}`} className={styles.user} data-testid="user-id">
         {stateName}
       </Link>
     </div>
