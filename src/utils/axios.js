@@ -1,22 +1,14 @@
 import axios from 'axios';
 
-export const BASE_URL = process.env.REACT_APP_URL;
-const token = `Bearer ${process.env.REACT_APP_TOKEN}`;
+axios.defaults.baseURL = 'http://opn-interview-service.nn.r.appspot.com';
+axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.REACT_APP_TOKEN}`;
 
-export const axiosFunc = (url) =>
-  axios.get(`${BASE_URL}${url}`, {
-    headers: {
-      Authorization: token,
-      'content-type': 'application/json',
-    },
-  });
+export const axiosFunc = (url) => axios.get(url);
 
 export const getUsers = async () => {
   try {
-    return await axios.get(`${BASE_URL}/list`);
+    return await axios.get(`/list`);
   } catch (e) {
     return [];
   }
 };
-
-
