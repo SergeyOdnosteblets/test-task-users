@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { List } from '../pages/List/List';
-import { axiosFunc } from '../utils/axios';
+import axios from 'axios';
 
 export const AllUserIds = () => {
   let [userIds, setUserIds] = useState('');
 
   useEffect(() => {
-    axiosFunc('/list').then((res) => {
-      setUserIds(res.data.data);
+    axios.get('/list').then((request) => {
+      setUserIds(request.data.data);
     });
   }, []);
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { axiosFunc } from '../../utils/axios';
+import axios from 'axios';
 import styles from './List.module.scss';
 
 export const List = ({ id }) => {
@@ -9,10 +9,10 @@ export const List = ({ id }) => {
   const [stateId, setStateId] = useState([]);
 
   useEffect(() => {
-    axiosFunc(`/get/${id}`).then((res) => {
-      setStateName(res.data.data.firstName);
-      setStateId(res.data.data.id);
-    });
+    axios.get(`/get/${id}`).then((res) => {
+        setStateName(res.data.data.firstName);
+        setStateId(res.data.data.id);
+      });
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { axiosFunc } from '../../utils/axios';
+import axios from 'axios';
 import styles from './User.module.scss';
 
 export const User = () => {
@@ -11,7 +11,7 @@ export const User = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axiosFunc(`/get/${id}`).then((res) => {
+    axios.get(`/get/${id}`).then((res) => {
       setState(res.data.data);
     });
   }, []);
