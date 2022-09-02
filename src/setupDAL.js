@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getDAL = () => {
+export const setupDAL = () => {
   axios.defaults.baseURL = process.env.REACT_APP_URL;
 
   axios.interceptors.request.use(async (config) => {

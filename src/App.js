@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AllUserIds } from './components/AllUserIds';
 import { User } from './pages/User/User';
-import { getDAL } from './setupDAL';
+import { setupDAL } from './setupDAL';
 
 function App() {
-  getDAL();
+  setupDAL();
 
   return (
     <BrowserRouter>
