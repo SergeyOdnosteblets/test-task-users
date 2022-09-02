@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 import axios from 'axios';
-import { BASE_URL, getUsers } from '../utils/axios';
+import {getUsers } from '../utils/axios';
 
 jest.mock('axios');
 
@@ -12,7 +12,7 @@ describe('getUsers', () => {
 
     const result = await getUsers(users);
 
-    expect(axios.get).toHaveBeenCalledWith(`/list`);
+    expect(axios.get).toHaveBeenCalledWith('/list');
     expect(result).toEqual(users);
   });
 
@@ -22,7 +22,7 @@ describe('getUsers', () => {
 
     const result = await getUsers();
 
-    expect(axios.get).toHaveBeenCalledWith(`/list`);
+    expect(axios.get).toHaveBeenCalledWith('/list');
     expect(result).toEqual(users);
   });
 });
@@ -34,7 +34,7 @@ describe('when API call fails', () => {
 
     const result = await getUsers();
 
-    expect(axios.get).toHaveBeenCalledWith(`/list`);
+    expect(axios.get).toHaveBeenCalledWith('/list');
     expect(result).toEqual([]);
   });
 });

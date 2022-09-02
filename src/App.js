@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AllUserIds } from './components/AllUserIds';
 import { User } from './pages/User/User';
-import { DAL } from './setupDAL';
+import { getDAL } from './setupDAL';
 
 function App() {
-  DAL();
+  getDAL();
+
   return (
     <BrowserRouter>
       <div className="app" data-testid="app">
