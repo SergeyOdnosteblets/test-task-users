@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 import { List } from '../pages/List/List';
-import { axiosFunc } from '../utils/axios';
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_URL;
+axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.REACT_APP_TOKEN}`;
 
 export const AllUserIds = () => {
   let [userIds, setUserIds] = useState('');
 
+  axios.interceptors.request.use(
+    (request) => request,
+    (err) => {
+      return Promise.reject(err);
+    },
+  );
+
   useEffect(() => {
-    axiosFunc('/list').then((res) => {
-      setUserIds(res.data.data);
+    axios.get('/list').then((request) => {
+      setUserIds(request.data.data);
     });
   }, []);
 
